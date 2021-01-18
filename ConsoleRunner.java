@@ -25,7 +25,10 @@ public class ConsoleRunner {
     /*
      * TBD: Create additional private members if useful.
      */
-
+    String userResponseX;
+    String userResponseChallenge;
+    
+    private boolean challenging;
     /**
      * Constructor
      */
@@ -36,6 +39,10 @@ public class ConsoleRunner {
          * Use the 'next' method of Scanner and the 'matches' of the String
          * class to process user responses as strings.
          */
+    	
+    	this.playerIsX = userResponseX.matches(scanner.next());
+    	this.challenging = userResponseChallenge.matches(scanner.next());
+    	
     }
 
     /**
@@ -52,5 +59,7 @@ public class ConsoleRunner {
          * There is enough work to do here that you may want to introduce
          * private methods (i.e. helper methods).
          */
+    	
+    	
     }
 }
