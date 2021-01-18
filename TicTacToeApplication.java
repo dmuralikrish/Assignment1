@@ -11,5 +11,7 @@ public class TicTacToeApplication {
         /*
          * TBD
          */
+    	ConsoleRunner consoleRunner = new ConsoleRunner();
+    	consoleRunner.mainLoop();
     }
 }
