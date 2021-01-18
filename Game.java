@@ -2,7 +2,7 @@
  * Represents the logic of the game in terms of detecting wins or draws.  Also
  * places new pieces for the human player or AI.
  *
- * @author INSERT YOUR NAME(S) HERE
+ * @author Shamima Nasrin Ali #201805363 
  */
 
 public class Game {
@@ -13,23 +13,27 @@ public class Game {
     /*
      * TBD: Create additional private members if useful.
      */
-
+    char playerSelection = 'X';
     /**
      * Construct a new Game according to the given parameters.
      */
     public Game(boolean playerIsX, boolean challenging) {
-        /*
-         * TBD
-         */
+        if(playerIsX == true) {
+        	playerSelection = 'X';
+        }
+        else {
+        	playerSelection = 'O';
+        }
+        if (challenging == true) {
+        	//call the AI
+        }
     }
 
     /**
      * Return a copy of the board's current contents.
      */
     public Board getBoard() {
-        /*
-         * TBD
-         */
+        return board;
     }
 
     /**
@@ -39,6 +43,7 @@ public class Game {
         /*
          * TBD
          */
+    	
     }
     
     /**
@@ -52,17 +57,18 @@ public class Game {
      *
      */
     public boolean placePlayerPiece(int i, int j) {
-        /*
-         * TBD
-         */
+        if ((i >= 0 && i <= 2) && (j >= 0 && j <= 2)) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
     }
 
     /**
      * @precondition status == IN_PROGRESS
      */
     public void aiPlacePiece() {
-        /*
-         * TBD
-         */
+        ai.chooseMove(this.board);
     }
 }
