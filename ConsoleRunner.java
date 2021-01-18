@@ -59,6 +59,13 @@ public class ConsoleRunner {
          * There is enough work to do here that you may want to introduce
          * private methods (i.e. helper methods).
          */
+        while(game.getStatus() == GameStatus.IN_PROGRESS){
+            if (playerIsX == true){
+                //Entire desired coordinates...etc.
+                //set the board
+                ///output the board
+            }
+        }
     	
     	
     }
