@@ -24,10 +24,7 @@ public class DumbAI implements AI {
      *              the 'X'.
      */
     public DumbAI(boolean aiIsX) {
-        /*
-         * TBD
-         */
-    	if(aiIsX == true) {
+        if(aiIsX == true) {
     		aiSelection = 'X';
     	}
     	else {
@@ -36,16 +33,18 @@ public class DumbAI implements AI {
     }
 
     public Move chooseMove(Board board) {
-        /*
-         * TBD
-         */
-    	//xAI = random.nextInt(3);
-    	//yAI = random.nextInt(3);
-    	while(board.get(xAI, yAI) != ' ') {
-    		xAI = random.nextInt(3);
-        	yAI = random.nextInt(3);
-    	}
-    	move = new Move(xAI, yAI, aiSelection);  		
-    	return move; 
+       	do {
+            while(board.get(xAI, yAI) != ' ') {
+    		    xAI = random.nextInt(3);
+        	    yAI = random.nextInt(3);
+    	    }
+            
+            //Complete this move is spot is blank, else choose new move
+            if (this.board[xAI][yAI] == ' ')
+                move = new Move(xAI, yAI, aiSelection);  	
+            else
+                found = false;
+        while(found == false);    	
+        return move; 
     }
 }
