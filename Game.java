@@ -15,38 +15,68 @@ public class Game {
     /*
      * TBD: Create additional private members if useful.
      */
-    public char playerSelection = 'X';
+    public char playerSelection = ' ';
+    private char winningChar = ' ';
+    private DumbAI dumbAI;
+    private SmartAI smartAI;
+
     /**
      * Construct a new Game according to the given parameters.
      */
     public Game(boolean playerIsX, boolean challenging) {
-        if(playerIsX == true) {
-        	playerSelection = 'X';
+        if(playerIsX == true && challenging == true) {
+        	this.playerSelection = 'X';
+        	this.smartAI = new SmartAI(true);
         }
-        else {
-        	playerSelection = 'O';
+        else if (playerIsX == true && challenging == false) {
+        	this.playerSelection = 'X';
+        	this.dumbAI = new DumbAI(true);
         }
-        if (challenging == true) {
-        	//call the AI
+        else if (playerIsX == false && challenging == true) {
+        	this.playerSelection = 'O';
+        	this.smartAI = new SmartAI(true);
         }
+        else if (playerIsX == false && challenging == false) {
+        //quit	
+        }
+        
+        
     }
 
     /**
      * Return a copy of the board's current contents.
      */
     public Board getBoard() {
-        return board;
+        return this.board;
     }
 
     /**
      * Get the game's status.
      */
     public GameStatus getStatus() {
-    	if (board.isFull() == false) {
-    		return GameStatus.IN_PROGRESS;
+    	if (board.isFull() == true && CheckForWinner() != 'X' && CheckForWinner() != 'O') {
+    		status = GameStatus.DRAW;
+    		return  status;
+    	}
+    	
+    	else if (board.isFull() == false && CheckForWinner() == 'X') {
+    		status = GameStatus.X_WON;
+    		return status ;
+    	}
+    	
+    	else if (board.isFull() == false && CheckForWinner() == 'O') {
+    		status = GameStatus.O_WON;
+    		return status; 
+    	}
+    	else {
+	    	status = GameStatus.IN_PROGRESS;
+	    	return status;
     	}
     	
     }
+    	
+    	
+    
     
     /**
      * Place a piece for the player on the board.
@@ -74,4 +104,67 @@ public class Game {
     public void aiPlacePiece() {
         ai.chooseMove(this.board);
     }
-}
+
+    
+    public char CheckForWinner() {
+    	
+    	//checks horizontally
+    	for(int j = 0; j <3; j++) {
+    		if ((board.get(0, j) == board.get(1, j)) && 
+    			(board.get(1, j) == board.get(2, j)) && 
+    			(board.get(2, j) == board.get(0, j))) {
+    			 winningChar = board.get(0, j);
+    		}
+    	}
+    			 
+    	//determines who won.
+		 if (winningChar == playerSelection && winningChar!= ' ') {
+			 System.out.print("You won!");
+		 }
+			 
+		 else {
+			 System.out.print("Loser!");
+		} 				  
+    	
+		 //sets the game status
+		 if (winningChar == 'X') {
+			 return 'X';
+		 }
+		 else {
+			 return 'O';
+		 }	
+    }
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+ 
+
+
+    
+    
+    
+    
+    
+    
+

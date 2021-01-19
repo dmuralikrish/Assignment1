@@ -13,7 +13,6 @@ public class DumbAI implements AI {
     /*
      * TBD: Create additional private members if useful.
      */
-    private Game game;
     char aiSelection = 'O';
     private int xAI;
     private int yAI;
@@ -28,11 +27,11 @@ public class DumbAI implements AI {
         /*
          * TBD
          */
-    	if (game.playerSelection == 'X') {
-    		aiSelection = 'O';
+    	if(aiIsX == true) {
+    		aiSelection = 'X';
     	}
     	else {
-    		aiSelection = 'X';
+    		aiSelection = 'O';
     	}
     }
 

@@ -6,12 +6,13 @@
  */
 
 public class TicTacToeApplication {
-
+	
     public static void main(String[] args) {
         /*
          * TBD
          */
-    	ConsoleRunner consoleRunner = new ConsoleRunner();
-    	consoleRunner.mainLoop();
+    	ConsoleRunner consoleRun = new ConsoleRunner();
+
+    	consoleRun.mainLoop();
     }
 }

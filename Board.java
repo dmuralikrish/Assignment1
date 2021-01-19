@@ -66,7 +66,7 @@ public class Board {
      * be in the range [0, 2].
      */
     public char get(int i, int j) {
-        if ((i >= 0 && i <= 2) && (i >= 0 && i <= 2)) {
+        if ((i >= 0 && i < 3) && (i >= 0 && i < 3)) {
         	return board[i][j];
         } else {
         	return 'W';
@@ -77,8 +77,8 @@ public class Board {
      * @return true if there remain no empty spots on the board.
      */
     public boolean isFull() {
-        for(int i = 0; i <3; i++) {
-        	for(int j = 0; i <3; j++) {
+        for(int i = 0; i < 3; i++) {
+        	for(int j = 0; i < 2; j++) {
         		if(this.board[i][j] != ' ') {
         			return true;
         		}
