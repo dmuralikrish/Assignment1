@@ -38,10 +38,10 @@ public class Game {
         	this.smartAI = new SmartAI(true);
         }
         else if (playerIsX == false && challenging == false) {
-        //quit	
+        	this.playerSelection = 'O';
+        	this.dumbAI = new DumbAI(false);
         }
-        
-        
+                
     }
 
     /**
