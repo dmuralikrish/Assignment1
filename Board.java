@@ -7,9 +7,7 @@
 public class Board {
 
     private char[][] board = new char[3][3];
-    char iInput;
-    char jInput;
-
+  
     /*
      * TBD: Create additional private members if useful.
      */
@@ -34,7 +32,7 @@ public class Board {
      * 'move' to generate this board's state.
      */
     public Board(Board other, Move move) {
-        this.board = other.board;
+        	this.board = other.board;
     }
 
     /**
@@ -42,8 +40,25 @@ public class Board {
      */
     @Override
     public String toString() {
-        String boardToShow = String.valueOf(board);
-        return boardToShow;
+    	String boardString="";
+        boardString += "-------\n|";
+        for (int i=0; i<3; i++){
+            for (int j=0;j<3;j++){
+                boardString += board[i][j];
+                if (j == 2){
+                    boardString += '|';
+                    boardString +='\n';
+                }
+                else {
+                    boardString += '|';
+                }
+            }
+            if (i<2) {
+                boardString += "-------\n|";
+            }
+        }
+        boardString += "-------\n";
+        return boardString;
     }
 
     /**
@@ -52,8 +67,9 @@ public class Board {
      */
     public char get(int i, int j) {
         if ((i >= 0 && i <= 2) && (i >= 0 && i <= 2)) {
-        	this.iInput = (char)i;
-        	this.jInput = (char)j;
+        	return board[i][j];
+        } else {
+        	return 'W';
         }
     }
     

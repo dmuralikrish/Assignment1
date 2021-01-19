@@ -9,11 +9,13 @@ public class Game {
     private Board board = new Board();
     private GameStatus status;
     private AI ai;
+    private Move movePlayer;
+   
 
     /*
      * TBD: Create additional private members if useful.
      */
-    char playerSelection = 'X';
+    public char playerSelection = 'X';
     /**
      * Construct a new Game according to the given parameters.
      */
@@ -40,9 +42,9 @@ public class Game {
      * Get the game's status.
      */
     public GameStatus getStatus() {
-        /*
-         * TBD
-         */
+    	if (board.isFull() == false) {
+    		return GameStatus.IN_PROGRESS;
+    	}
     	
     }
     
@@ -58,6 +60,7 @@ public class Game {
      */
     public boolean placePlayerPiece(int i, int j) {
         if ((i >= 0 && i <= 2) && (j >= 0 && j <= 2)) {
+        	movePlayer = new Move(i, j, playerSelection);
         	return true;
         }
         else {
