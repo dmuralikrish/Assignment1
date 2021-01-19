@@ -77,15 +77,19 @@ public class ConsoleRunner {
          * There is enough work to do here that you may want to introduce
          * private methods (i.e. helper methods).
          */
+    	System.out.print(board.toString());
     	while(game.getStatus() == gameStat) {
     		if (playerIsX == true) {
     			PlayerTurn();
     			AITurn();
+    			game.getBoard();
     			game.CheckForWinner();
     			game.getStatus();
+    			
     		} else if (playerIsX == false) {
     			AITurn();
     			PlayerTurn();
+    			game.getBoard();
     			game.CheckForWinner();
     			game.getStatus();
     		}

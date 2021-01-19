@@ -30,7 +30,7 @@ public class Game {
         }
         else if (playerIsX == true && challenging == false) {
         	this.playerSelection = 'X';
-        	this.dumbAI = new DumbAI(true);
+        	this.dumbAI = new DumbAI(false);
         }
         else if (playerIsX == false && challenging == true) {
         	this.playerSelection = 'O';
@@ -102,37 +102,42 @@ public class Game {
      * @precondition status == IN_PROGRESS
      */
     public void aiPlacePiece() {
-        ai.chooseMove(this.board);
+    	//need better logic here
+    		dumbAI.chooseMove(this.board);
     }
 
     
     public char CheckForWinner() {
-    	
-    	//checks horizontally
-    	for(int j = 0; j <3; j++) {
-    		if ((board.get(0, j) == board.get(1, j)) && 
-    			(board.get(1, j) == board.get(2, j)) && 
-    			(board.get(2, j) == board.get(0, j))) {
-    			 winningChar = board.get(0, j);
-    		}
+    	if (board.isFull() == false) {
+    		return ' ';
     	}
-    			 
-    	//determines who won.
-		 if (winningChar == playerSelection && winningChar!= ' ') {
-			 System.out.print("You won!");
-		 }
-			 
-		 else {
-			 System.out.print("Loser!");
-		} 				  
-    	
-		 //sets the game status
-		 if (winningChar == 'X') {
-			 return 'X';
-		 }
-		 else {
-			 return 'O';
-		 }	
+    	else {
+	    	//checks horizontally
+	    	for(int j = 0; j <3; j++) {
+	    		if ((board.get(0, j) == board.get(1, j)) && 
+	    			(board.get(1, j) == board.get(2, j)) && 
+	    			(board.get(2, j) == board.get(0, j))) {
+	    			 winningChar = board.get(0, j);
+	    		}
+	    	}
+	    			 
+	    	//determines who won.
+			 if (winningChar == playerSelection && winningChar!= ' ') {
+				 System.out.print("You won!");
+			 }
+				 
+			 else {
+				 System.out.print("Loser!");
+			} 				  
+	    	
+			 //helps to set the game status
+			 if (winningChar == 'X') {
+				 return 'X';
+			 }
+			 else {
+				 return 'O';
+			 }	
+    	}
     }
     
   
