@@ -16,15 +16,11 @@ public class Board {
      * Construct an empty board (contains all space char's).
      */
     public Board() {
-    	 board[0][0] = ' ';
-    	 board[0][1] = ' ';
-    	 board[0][2] = ' ';
-    	 board[1][0] = ' ';
-    	 board[1][1] = ' ';
-    	 board[1][2] = ' ';
-    	 board[2][0] = ' ';
-    	 board[2][1] = ' ';
-    	 board[2][2] = ' ';   	 
+    	 for(int i =0; i<3; i++){
+            for(int j = 0; j<3; j++){
+                board[i][j] = ' ';
+            }
+        }      	 
     }
 
     /**
@@ -37,8 +33,7 @@ public class Board {
          		this.board[i][j] = other.board[i][j];
          	}
     	 }
-
-    	this.board[move.getI()][move.getJ()] =  move.getPiece();
+    	this.board[move.getI()][move.getJ()] = move.getPiece();
     }
 
     /**
@@ -75,7 +70,7 @@ public class Board {
         if ((i >= 0 && i < 3) && (i >= 0 && i < 3)) {
         	return board[i][j];
         } else {
-        	return 'W';
+        	return 'W';                 //why W?
         }
     }
     
@@ -83,13 +78,10 @@ public class Board {
      * @return true if there remain no empty spots on the board.
      */
     public boolean isFull() {
-        for(int i = 0; i < 3; i++) {
-        	for(int j = 0; j < 3; j++) {
-        		if(this.board[i][j] != ' ') {
-        			return true;
-        		}
-        	}
-        }
-        return false;
+        for(int i = 0; i < 3; i++) 
+        	for(int j = 0; j < 3; j++) 
+        		if(this.board[i][j] == ' ') 
+        			return false;
+        return true;
     }
 }
