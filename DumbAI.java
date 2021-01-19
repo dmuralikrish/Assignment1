@@ -41,7 +41,7 @@ public class DumbAI implements AI {
          */
     	xAI = random.nextInt(3);
     	yAI = random.nextInt(3);
-    	while(board.get(xAI, yAI) != ' ') {
+    	while(board.get(xAI, yAI) == ' ') {
     		xAI = random.nextInt(3);
         	yAI = random.nextInt(3);
     	}

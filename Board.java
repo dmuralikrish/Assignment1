@@ -32,7 +32,13 @@ public class Board {
      * 'move' to generate this board's state.
      */
     public Board(Board other, Move move) {
-        	this.board = other.board;
+    	 for(int i = 0; i < 3; i++) {
+         	for(int j = 0; j < 3; j++) {
+         		this.board[i][j] = other.board[i][j];
+         	}
+    	 }
+
+    	this.board[move.getI()][move.getJ()] =  move.getPiece();
     }
 
     /**
@@ -41,7 +47,7 @@ public class Board {
     @Override
     public String toString() {
     	String boardString="";
-        boardString += "-------\n|";
+        boardString += "\n-------\n|";
         for (int i=0; i<3; i++){
             for (int j=0;j<3;j++){
                 boardString += board[i][j];

@@ -82,7 +82,7 @@ public class ConsoleRunner {
     		if (playerIsX == true) {
     			PlayerTurn();
     			AITurn();
-    			game.getBoard();
+    			this.game.getBoard();
     			game.CheckForWinner();
     			game.getStatus();
     			
@@ -109,7 +109,7 @@ public class ConsoleRunner {
     	//places the piece in chosen place
     	game.placePlayerPiece(userXChoice, userYChoice); 
     	System.out.print("After your move: ");
-    	System.out.print(this.board.toString());
+    	System.out.print(this.game.getBoard());
     }
     
     
@@ -120,7 +120,7 @@ public class ConsoleRunner {
     public void AITurn() {
     	game.aiPlacePiece();
     	System.out.print("After AI move: ");
-    	System.out.print(this.board.toString());
+    	System.out.print(this.game.getBoard());
     }
     
 

@@ -19,6 +19,7 @@ public class Game {
     private char winningChar = ' ';
     private DumbAI dumbAI;
     private SmartAI smartAI;
+    private Move moveAI;
 
     /**
      * Construct a new Game according to the given parameters.
@@ -91,6 +92,7 @@ public class Game {
     public boolean placePlayerPiece(int i, int j) {
         if ((i >= 0 && i <= 2) && (j >= 0 && j <= 2)) {
         	movePlayer = new Move(i, j, playerSelection);
+        	this.board = new Board(this.board, movePlayer);
         	return true;
         }
         else {
@@ -102,13 +104,14 @@ public class Game {
      * @precondition status == IN_PROGRESS
      */
     public void aiPlacePiece() {
-    	//need better logic here
-    		dumbAI.chooseMove(this.board);
+    	//need logic to choose b/w smart and dumb  aiiii		
+    		moveAI = dumbAI.chooseMove(this.board);
+    		this.board= new Board(this.board, moveAI);
     }
 
     
     public char CheckForWinner() {
-    	if (board.isFull() == false) {
+    	if (this.board.isFull() == false) {
     		return ' ';
     	}
     	else {
@@ -139,23 +142,7 @@ public class Game {
 			 }	
     	}
     }
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      
     
     }
     
