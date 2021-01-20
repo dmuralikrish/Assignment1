@@ -16,41 +16,22 @@ public class ConsoleRunner {
      * goes first.
      */
     private boolean playerIsX;
-
-    private Game game;
-    
-    // Use to process text input from the user.
-    private Scanner scanner = new Scanner(System.in);
-    
-
-    /*
-     * TBD: Create additional private members if useful.
-     */
+    private Game game;        
+    private Scanner scanner = new Scanner(System.in); // Use to process text input from the user.
     String userResponseX;
-    String userResponseChallenge;
-    
+    String userResponseChallenge;    
     int userXChoice;
-    int userYChoice;
-    
-    private boolean challenging;
-    
+    int userYChoice;    
+    private boolean challenging;    
     Board board = new Board();
-    Move move;
-    
+    Move move;    
     private GameStatus gameStat = GameStatus.IN_PROGRESS;; 
     
     /**
      * Constructor
      */
     public ConsoleRunner() {    
-        /*
-         * TBD
-         *
-         * Use the 'next' method of Scanner and the 'matches' of the String
-         * class to process user responses as strings.
-         */
-    	
-    	System.out.print("Do you want to play as X (Y/N): \n");  
+        System.out.print("Do you want to play as X (Y/N): \n");  
     	userResponseX = scanner.nextLine();  
     	
     	System.out.print("Do you want a challenge (Y/N): \n");  
@@ -58,9 +39,7 @@ public class ConsoleRunner {
 
     	this.playerIsX = userResponseX.matches("Y");
     	this.challenging = userResponseChallenge.matches("Y");
-    	this.game = new Game(playerIsX, challenging);
-    	
-
+    	this.game = new Game(playerIsX, challenging);  	
     }
 
     /**
@@ -68,35 +47,21 @@ public class ConsoleRunner {
      * when one party has won or there has been a draw.
      */
     public void mainLoop() {
-        /*
-         * TBD
-         *
-         * Use the 'nextInt' method of Scanner class to read user responses as
-         * integers.
-         *
-         * There is enough work to do here that you may want to introduce
-         * private methods (i.e. helper methods).
-         */
-    	System.out.print(board.toString());
-    	while(game.getStatus() == gameStat) {
+        System.out.print(board.toString());
+    	do{
     		if (playerIsX == true) {
     			PlayerTurn();
     			AITurn();
     			this.game.getBoard();
-    			game.CheckForWinner();
     			game.getStatus();
     			
     		} else if (playerIsX == false) {
     			AITurn();
     			PlayerTurn();
     			game.getBoard();
-    			game.CheckForWinner();
     			game.getStatus();
-    		}
-    		
-    		
-    	}   	
-    	
+    		}    		
+    	}while(game.getStatus() == GameStatus.IN_PROGRESS);	    	
     }
     
     public void PlayerTurn() {
