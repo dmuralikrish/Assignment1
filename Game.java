@@ -20,6 +20,7 @@ public class Game {
     private DumbAI dumbAI;
     private SmartAI smartAI;
     private Move moveAI;
+    private bool isThereAWinner = false;
 
     /**
      * Construct a new Game according to the given parameters.
@@ -55,17 +56,17 @@ public class Game {
      * Get the game's status.
      */
     public GameStatus getStatus() {
-    	if (board.isFull() == true && CheckForWinner() != 'X' && CheckForWinner() != 'O') {
+    	if (board.isFull() == true && isThereAWinner == false) {
     		status = GameStatus.DRAW;
     		return  status;
     	}
     	
-    	else if (board.isFull() == false && CheckForWinner() == 'X') {
+    	else if (isThereAWinner == true && CheckForWinner == 'X') {
     		status = GameStatus.X_WON;
     		return status ;
     	}
     	
-    	else if (board.isFull() == false && CheckForWinner() == 'O') {
+    	else if (isThereAWinner == true && CheckForWinner() == 'O') {
     		status = GameStatus.O_WON;
     		return status; 
     	}
@@ -74,10 +75,8 @@ public class Game {
 	    	return status;
     	}
     	
-    }
-    	
-    	
-    
+    }    	
+    	   
     
     /**
      * Place a piece for the player on the board.
@@ -105,46 +104,58 @@ public class Game {
      */
     public void aiPlacePiece() {
     	//need logic to choose b/w smart and dumb  aiiii		
-    		moveAI = dumbAI.chooseMove(this.board);
-    		this.board= new Board(this.board, moveAI);
+    	moveAI = dumbAI.chooseMove(this.board);
+    	this.board= new Board(this.board, moveAI);
     }
 
     
-    public char CheckForWinner() {
-    	if (this.board.isFull() == false) {
-    		return ' ';
-    	}
-    	else {
-	    	//checks horizontally
-	    	for(int j = 0; j <3; j++) {
-	    		if ((board.get(0, j) == board.get(1, j)) && 
-	    			(board.get(1, j) == board.get(2, j)) && 
-	    			(board.get(2, j) == board.get(0, j))) {
-	    			 winningChar = board.get(0, j);
-	    		}
+    public char CheckForWinner() {    	
+	//checks horizontally
+	 for(int j = 0; j <3; j++) {
+	 	if ((board.get(0, j) == board.get(1, j)) && (board.get(1, j) == board.get(2, j)) && (board.get(2, j) == board.get(0, j))) {
+	    		winningChar = board.get(0, j);
+			isThereAWinner = true;
 	    	}
+	 }
+	//checks vertically
+	for(int i = 0; i <3; i++) {
+		if ((board.get(i, 0) == board.get(i, 1)) && (board.get(i, 1) == board.get(i, 2)) && (board.get(i, 2) == board.get(i,0))) {
+			winningChar = board.get(i, 0);
+			isThereAWinner = true;
+		}
+	}
+		
+	//checks right diagonal
+	if (board.get(0,0) == board.get(1, 1) && board.get(1, 1) == board.get(2,2){
+		winningChar = board.get(1, 1);
+		isThereAWinner = true;
+	}
+		    
+	//checks left diagonal
+	if (board.get(0,2) == board.get(1, 1) && board.get(1, 1) == board.get(2,0){
+		winningChar = board.get(1, 1);
+		isThereAWinner = true;
+	}		    
 	    			 
-	    	//determines who won.
-			 if (winningChar == playerSelection && winningChar!= ' ') {
-				 System.out.print("You won!");
-			 }
+   	//determines who won.
+	if (winningChar == playerSelection && isThereAWinner == true) {
+		System.out.print("You won!");
+	}
 				 
-			 else {
-				 System.out.print("Loser!");
-			} 				  
+	else if (winningChar != playerSelection && isThereAWinner == true){
+		System.out.print("Loser!");
+	} 				  
 	    	
-			 //helps to set the game status
-			 if (winningChar == 'X') {
-				 return 'X';
-			 }
-			 else {
-				 return 'O';
-			 }	
-    	}
+	//helps to set the game status
+	
+	if (winningChar == 'X') {
+		return 'X';
+	}
+	else {
+		 return 'O';
+	}    	
     }
-      
-    
-    }
+}
     
     
     
