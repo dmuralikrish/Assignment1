@@ -56,7 +56,8 @@ public class Game {
      * Get the game's status.
      */
     public GameStatus getStatus() {
-    	if (board.isFull() == true && isThereAWinner == false) {
+    	CheckForWinner();
+	if (board.isFull() == true && isThereAWinner == false) {
     		status = GameStatus.DRAW;
     		return  status;
     	}
